@@ -1,5 +1,5 @@
 <h1>Title: <%= @post.title %></h1>
-<p>Sub: <%= @post.subject.title %></p>
+<p>Sub: <%= @post.subs.map {|sub| sub.title}.join(", ") %></p>
 <p>Author: <%= @post.author.username %></p>
 <p><%=  @post.url == "" ? "" : "URL: " + @post.url %></p>
 <p>Content: <%= @post.content %></p>

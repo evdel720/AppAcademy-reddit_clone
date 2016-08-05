@@ -2,6 +2,6 @@
 
 <form action= <%= post_url(@post) %> method="POST">
   <input type="hidden" name="_method" value="PATCH">
-  <%= render "form", post: @post %>
+  <%= render "form", post: @post, subs: @subs %>
   <input type="submit" value="Update this post">
 </form>

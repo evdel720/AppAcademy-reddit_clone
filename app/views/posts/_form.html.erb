@@ -1,8 +1,21 @@
 <%= auth_token %>
 <label for="post_title">Title</label>
-<input id="post_title" type="text" name="post[title]" value=" <%= post.title %> ">
+<input id="post_title" type="text" name="post[title]" value="<%= post.title %>">
+</br>
+
+<label for="post_sub_id">Sub</label>
+<% subs.each do |subject| %>
+  <%= subject.title %> <input type="checkbox"
+    name="post[sub_ids][]"
+    value="<%= subject.id %>"
+    <%= "checked" if post.sub_ids.include?(subject.id) %>>
+  </br>
+<% end %>
+
 <label for="post_url">Url</label>
 <input id="post_url" type="text" name="post[url]" value="<%= post.url %>">
+</br>
 <label for="post_content">Content</label>
+</br>
 <textarea id="post_content" name="post[content]" rows="8" cols="40"> <%= post.content %>
 </textarea>
