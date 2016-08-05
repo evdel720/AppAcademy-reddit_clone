@@ -1,0 +1,7 @@
+<h1>Update this sub</h1>
+
+<form action= <%= sub_url(@sub) %> method="POST">
+  <input type="hidden" name="_method" value="PATCH">
+  <%= render "form", sub: @sub %>
+  <input type="submit" value="Update this sub">
+</form>

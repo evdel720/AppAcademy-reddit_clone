@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Redditclone</title>
+  <%= stylesheet_link_tag    'application', media: 'all' %>
+  <%= javascript_include_tag 'application' %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+<% if flash[:errors] %>
+  <%= flash[:errors].join(", ") %>
+<% end %>
+<%= button_to "Home", subs_url, method: :get %>
+
+<% if current_user %>
+  You're logged in as <%= current_user.username %>
+  <%= button_to "Sign Out", session_url, method: :delete %>
+<% else %>
+  <%= button_to "Sign In", new_session_url, method: :get %>
+  <%= button_to "Sign Up", new_user_url, method: :get  %>
+<% end %>
+
+<%= yield %>
+
+</body>
+</html>

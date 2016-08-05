@@ -1,0 +1,6 @@
+<h1>Create a new sub</h1>
+
+<form action= <%= subs_url %> method="POST">
+  <%= render "form", sub: @sub %>
+  <input type="submit" value="Create new sub">
+</form>

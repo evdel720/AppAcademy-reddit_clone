@@ -1,0 +1,6 @@
+<h1>Create a new post</h1>
+
+<form action= <%= sub_posts_url(params[:sub_id]) %> method="POST">
+  <%= render "form", post: @post %>
+  <input type="submit" value="Create new post">
+</form>

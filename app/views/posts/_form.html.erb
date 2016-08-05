@@ -1,0 +1,8 @@
+<%= auth_token %>
+<label for="post_title">Title</label>
+<input id="post_title" type="text" name="post[title]" value=" <%= post.title %> ">
+<label for="post_url">Url</label>
+<input id="post_url" type="text" name="post[url]" value="<%= post.url %>">
+<label for="post_content">Content</label>
+<textarea id="post_content" name="post[content]" rows="8" cols="40"> <%= post.content %>
+</textarea>
