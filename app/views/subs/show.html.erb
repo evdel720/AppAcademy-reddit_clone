@@ -1,5 +1,15 @@
-<h1><%= @sub.title %></h1>
-<p><%= @sub.moderator.username %></p>
-<p><%= @sub.description %></p>
+<h1>Sub title: <%= @sub.title %></h1>
+<p>Sub Moderator: <%= @sub.moderator.username %></p>
+<p>Sub Description: <%= @sub.description %></p>
+
+<ul>
+<% @sub.posts.each do |post| %>
+  <li>
+  <%= link_to post.title, post_url(post) %>
+  </li>
+<% end %>
+</ul>
+
+<%= button_to "New post to this sub", new_sub_post_url(@sub), method: :get  %>
 
 <%= button_to "Edit this sub", edit_sub_url(@sub), method: :get %>

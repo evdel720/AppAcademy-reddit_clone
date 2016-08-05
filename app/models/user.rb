@@ -7,6 +7,9 @@ class User < ActiveRecord::Base
 
   attr_reader :password
 
+  has_many :subs
+  has_many :posts
+
   def password=(password)
     self.password_digest = BCrypt::Password.create(password)
     @passwrd = password

@@ -2,6 +2,7 @@ class PostsController < ApplicationController
 
   before_action :require_log_in, except: :show
   before_action :current_post, only: [:show, :edit, :update]
+  before_action :is_author, only: [:edit, :update]
 
   def new
     @post = Post.new
@@ -44,6 +45,14 @@ class PostsController < ApplicationController
 
   def post_params
     params.require(:post).permit(:title, :content, :url)
+  end
+
+  def is_author
+    if current_user.id != @post.user_id
+      flash[:errors] ||= []
+      flash[:errors] << "You are not the author"
+      redirect_to subs_url
+    end
   end
 
 end
