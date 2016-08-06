@@ -13,4 +13,6 @@ class Post < ActiveRecord::Base
     through: :postsubs,
     source: :sub
 
+  has_many :comments
+
 end

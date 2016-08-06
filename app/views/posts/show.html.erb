@@ -5,3 +5,13 @@
 <p>Content: <%= @post.content %></p>
 
 <%= button_to "Edit this post", edit_post_url(@post), method: :get %>
+</br>
+<ul>
+<% @comments.each do |comment| %>
+  <li><%= render "comment", comment: comment, post: @post %></li>
+<% end %>
+</ul>
+<% if current_user %>
+  <form action= "<%= post_comments_url(params[:id]) %>" method="POST">
+  <%= render "comments/form", post_id: @post.id %>
+<% end %>

@@ -1,0 +1,3 @@
+<h1>Add a comment</h1>
+<form action= "/posts/<%=params[:post_id]%>/comments?comment_id=<%=params[:comment_id]%>" method="POST">
+<%= render "form", post_id: params[:post_id] %>
