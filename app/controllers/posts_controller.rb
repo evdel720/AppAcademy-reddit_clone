@@ -16,8 +16,7 @@ class PostsController < ApplicationController
     if @post.save
       redirect_to post_url(@post)
     else
-      flash.now[:errors] ||= []
-      flash.now[:errors] += @post.errors.full_messages
+      flash.now[:errors] = @post.errors.full_messages
       render :new
     end
   end
@@ -52,8 +51,7 @@ class PostsController < ApplicationController
 
   def is_author
     if current_user.id != @post.user_id
-      flash[:errors] ||= []
-      flash[:errors] << "You are not the author"
+      flash[:errors] = ["You are not the author of this post."]
       redirect_to subs_url
     end
   end

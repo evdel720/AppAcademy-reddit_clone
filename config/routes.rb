@@ -6,4 +6,5 @@ Rails.application.routes.draw do
   end
 
   resource :session, only: [:new, :create, :destroy]
+  root to: "subs#index"
 end

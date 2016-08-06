@@ -1,6 +1,7 @@
 class SubsController < ApplicationController
   before_action :require_log_in, except: [:show, :index]
   before_action :current_sub, only: [:show, :edit, :update]
+  before_action :is_author, only: [:edit, :update]
 
   def index
     @subs = Sub.all
@@ -16,8 +17,7 @@ class SubsController < ApplicationController
     if @sub.save
       redirect_to subs_url
     else
-      flash.now[:errors] ||= []
-      flash.now[:errors] += @sub.errors.full_messages
+      flash.now[:errors] = @sub.errors.full_messages
       render :new
     end
   end
@@ -32,14 +32,20 @@ class SubsController < ApplicationController
     if @sub.update(sub_params)
       redirect_to sub_url(@sub.id)
     else
-      flash.now[:errors] ||= []
-      flash.now[:errors] += @sub.errors.full_messages
+      flash.now[:errors] = @sub.errors.full_messages
       render :edit
     end
   end
 
 
   private
+
+  def is_author
+    if current_user.id != @sub.moderator.id
+      flash[:errors] = ["You are not the author of this sub."]
+      redirect_to subs_url
+    end
+  end
 
   def current_sub
     @sub = Sub.find_by(id: params[:id])

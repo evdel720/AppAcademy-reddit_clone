@@ -14,8 +14,7 @@ class CommentsController < ApplicationController
     if @comment.save
       redirect_to post_url(params[:post_id])
     else
-      flash[:errors] ||= []
-      flash[:errors] += @comment.errors.full_messages
+      flash[:errors] = @comment.errors.full_messages
       redirect_to post_url(params[:post_id])
     end
   end

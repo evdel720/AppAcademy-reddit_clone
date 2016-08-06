@@ -21,8 +21,7 @@ class ApplicationController < ActionController::Base
 
   def require_log_in
     if current_user.nil?
-      flash[:errors] ||= []
-      flash[:errors] << "Please log in first!!!"
+      flash[:errors] = ["Please log in first."]
       redirect_to new_session_url
     end
   end

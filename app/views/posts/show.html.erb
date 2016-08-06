@@ -1,16 +1,20 @@
 <h1>Title: <%= @post.title %></h1>
 <p>Sub: <%= @post.subs.map {|sub| sub.title}.join(", ") %></p>
 <p>Author: <%= @post.author.username %></p>
-<p><%=  @post.url == "" ? "" : "URL: " + @post.url %></p>
+<% if @post.url != "" %>
+  <p>Url: <%= @post.url %></p>
+<% end %>
 <p>Content: <%= @post.content %></p>
 
 <%= button_to "Edit this post", edit_post_url(@post), method: :get %>
 </br>
+
 <ul>
   <% @comments[nil].each do |child| %>
     <li><%= render "comment", comment: child, post: @post, comments: @comments %></li>
   <% end %>
 </ul>
+
 <% if current_user %>
   <form action= "<%= post_comments_url(params[:id]) %>" method="POST">
   <%= render "comments/form", post_id: @post.id %>
