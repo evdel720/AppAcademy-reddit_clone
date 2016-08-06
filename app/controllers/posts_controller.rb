@@ -23,7 +23,7 @@ class PostsController < ApplicationController
   end
 
   def show
-    @comments = @post.comments.where(parent_comment_id: nil).includes(:user)
+    @comments = @post.comments_by_parent_id
   end
 
   def edit
